@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Aggiungi Gusto</h2>
+Nome:<input id="nome"><br>
+Prezzo:<input id="prezzo"><br>
+<button onclick="invia()">Salva</button>
+
+<script>
+function invia(){
+ fetch("http://localhost:7000/aggiungi-gusto",{
+  method:"POST",
+  headers:{"Content-Type":"application/json"},
+  body:JSON.stringify({
+    nome:document.getElementById("nome").value,
+    prezzo:parseFloat(document.getElementById("prezzo").value)
+  })
+ }).then(r=>r.text()).then(alert);
+}
+</script>
+
+</body>
+</html>

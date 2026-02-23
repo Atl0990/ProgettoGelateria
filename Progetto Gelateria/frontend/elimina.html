@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Elimina Gusto</h2>
+ID:<input id="id">
+<button onclick="elimina()">Elimina</button>
+
+<script>
+function elimina(){
+ fetch("http://localhost:7000/elimina-gusto",{
+   method:"POST",
+   body:document.getElementById("id").value
+ }).then(r=>r.text()).then(alert);
+}
+</script>
+
+</body>
+</html>
