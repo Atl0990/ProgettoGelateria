@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Operazione Riuscita</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>SchizzaLotto</h1>
+        <nav><a href="/">Dashboard</a><a href="/lavora_con_noi">Lavora con noi</a></nav>
+    </header>
+    <div class="main-wrapper" style="display: block; max-width: 600px; margin: 0 auto; text-align: center;">
+        <div class="card">
+            <h2 style="color: var(--pistachio-dark);">Fatto!</h2>
+            <p style="font-size: 20px; font-weight: bold;">{{ messaggio }}</p>
+            <br><br>
+            <a href="/"><button style="width: 100%;">Torna alla Dashboard</button></a>
+        </div>
+    </div>
+</body>
+</html>

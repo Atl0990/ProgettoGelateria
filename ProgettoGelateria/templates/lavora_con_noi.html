@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavora con noi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>SchizzaLotto - Carriere</h1>
+        <nav><a href="/">Torna alla Dashboard</a></nav>
+    </header>
+    <div class="main-wrapper" style="display: block; max-width: 800px; margin: 0 auto;">
+        <div class="card">
+            <h2>Unisciti al nostro team!</h2>
+            <p>Non serve caricare file: compila il form con i tuoi dati e un link al tuo CV o portfolio.</p>
+            <form action="/api/invia_cv" method="POST">
+                <label>Nome e Cognome:</label>
+                <input type="text" name="nome" required>
+                
+                <label>Email:</label>
+                <input type="email" name="email" required>
+                
+                <label>Posizione Desiderata:</label>
+                <select name="posizione">
+                    <option value="Banconista">Banconista</option>
+                    <option value="Maestro Gelatiere">Maestro Gelatiere</option>
+                    <option value="Cassiere">Cassiere</option>
+                    <option value="Spazzino">Spazzino</option>
+                    <option value="Cane da guardia">Cane da guardia come Lotto</option>
+                </select>
+                
+                <label>Link al CV:</label>
+                <textarea name="note" rows="4" required placeholder="Incolla qui il link al tuo CV e raccontaci perche dovremmo sceglierti."></textarea>
+                
+                <button type="submit" style="width: 100%;">Invia Candidatura</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>SchizzaLotto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>SchizzaLotto - Cruscotto</h1>
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="/inserisci">Aggiungi Gusto</a>
+            <a href="/elimina">Elimina Gusto</a>
+            <a href="/lavora_con_noi">Lavora con noi</a>
+        </nav>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="card">
+            <h2>Gestione Dati</h2>
+            <p>Seleziona un'opzione per visualizzare i dati in tempo reale.</p>
+            <button onclick="caricaDati('/api/gusti')">Tutti i Gusti</button>
+            <button onclick="caricaDati('/api/gusti/ordinati')">Gusti (A-Z)</button>
+            <br>
+            <button onclick="caricaDati('/api/dipendenti')">Tutti i Dipendenti</button>
+            <button onclick="caricaDati('/api/dipendenti/filtro?ruolo=cassa')">Filtro: Cassieri</button>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>Risultati dal Database</h2>
+            <div id="risultato">
+                <p>Risultati</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function caricaDati(endpoint) {
+            const div = document.getElementById('risultato');
+            div.innerHTML = "<p class='loading'>Mescolando gli ingredienti... (Caricamento dati)</p>";
+            fetch(endpoint)
+                .then(response => response.json())
+                .then(data => {
+                    setTimeout(() => {
+                        if(data.length === 0) { div.innerHTML = "<p>Nessun dato trovato.</p>"; return; }
+                        let html = "<table><tr>";
+                        for (let key in data[0]) { html += "<th>" + key.toUpperCase() + "</th>"; }
+                        html += "</tr>";
+                        data.forEach(row => {
+                            html += "<tr>";
+                            for (let key in row) { html += "<td>" + row[key] + "</td>"; }
+                            html += "</tr>";
+                        });
+                        html += "</table>";
+                        div.innerHTML = html;
+                    }, 400); 
+                });
+        }
+    </script>
+</body>
+</html>

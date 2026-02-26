@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Elimina Gusto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>SchizzaLotto</h1>
+        <nav><a href="/">Dashboard</a><a href="/lavora_con_noi">Lavora con noi</a></nav>
+    </header>
+    <div class="main-wrapper" style="display: block; max-width: 600px; margin: 0 auto;">
+        <div class="card card-danger">
+            <h2 style="color: var(--strawberry-dark);">Elimina un Gusto</h2>
+            <p>Attenzione: l'operazione non può essere annullata.</p>
+            <form action="/api/elimina_gusto" method="POST">
+                <label>ID del Gusto:</label>
+                <input type="number" name="id" placeholder="Inserisci il numero ID" required>
+                <button type="submit" class="btn-danger" style="width: 100%;">Elimina Definitivamente</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
